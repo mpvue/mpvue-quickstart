@@ -8,10 +8,24 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+function getEntry (dir, entryFile) {
+  const files = fs.readdirSync(dir)
+  return files.reduce((res, k) => {
+    const page = path.resolve(dir, k, entryFile)
+    if (fs.existsSync(page)) {
+      res[k] = page
+    }
+    return res
+  }, {})
+}
+
+const appEntry = { app: resolve('./src/main.js') }
+const pagesEntry = getEntry(resolve('./src/pages'), 'main.js')
+const entry = Object.assign({}, appEntry, pagesEntry)
+
 module.exports = {
-  entry: {
-    app: './src/main.js'
-  },
+  entry: entry,
+  target: require('mpvue-webpack-target'),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -23,41 +37,50 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       {{#if_eq build "standalone"}}
-      'vue$': 'vue/dist/vue.esm.js',
+      // 'vue$': 'vue/dist/vue.esm.js',
       {{/if_eq}}
-      '@': resolve('src'),
+      'vue': 'mpvue',
+      '@': resolve('src')
     },
     symlinks: false
   },
   module: {
     rules: [
       {{#lint}}
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: [resolve('src'), resolve('test')],
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {{/lint}}
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: 'mpvue-loader',
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test')],
+        use: [
+          'babel-loader',
+          {
+            loader: 'mpvue-loader',
+            options: {
+              checkMPEntry: true
+            }
+          },
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('img/[name].[ext]')
         }
       },
       {
@@ -65,7 +88,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          name: utils.assetsPath('media/[name]].[ext]')
         }
       },
       {
@@ -73,7 +96,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: utils.assetsPath('fonts/[name].[ext]')
         }
       }
     ]

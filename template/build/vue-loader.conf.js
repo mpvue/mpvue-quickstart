@@ -1,6 +1,8 @@
 var utils = require('./utils')
 var config = require('../config')
-var isProduction = process.env.NODE_ENV === 'production'
+// var isProduction = process.env.NODE_ENV === 'production'
+// for mp
+var isProduction = true
 
 module.exports = {
   loaders: utils.cssLoaders({

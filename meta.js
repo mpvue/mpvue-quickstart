@@ -28,21 +28,21 @@ module.exports = {
       "type": "list",
       "message": "Vue build",
       "choices": [
+        // {
+        //   "name": "Runtime + Compiler: recommended for most users",
+        //   "value": "standalone",
+        //   "short": "standalone"
+        // },
         {
-          "name": "Runtime + Compiler: recommended for most users",
-          "value": "standalone",
-          "short": "standalone"
-        },
-        {
-          "name": "Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere",
+          "name": "Runtime-only: no custom render function, only can compile template in *.vue",
           "value": "runtime",
           "short": "runtime"
         }
       ]
     },
-    "router": {
+    "vuex": {
       "type": "confirm",
-      "message": "Install vue-router?"
+      "message": "Use Vuex?"
     },
     "lint": {
       "type": "confirm",
@@ -70,23 +70,24 @@ module.exports = {
         }
       ]
     },
-    "unit": {
-      "type": "confirm",
-      "message": "Setup unit tests with Karma + Mocha?"
-    },
-    "e2e": {
-      "type": "confirm",
-      "message": "Setup e2e tests with Nightwatch?"
+    "test": {
+      "value": false,
+      "message": "小程序测试，敬请关注最新微信开发者工具的“测试报告”功能"
     }
   },
   "filters": {
     ".eslintrc.js": "lint",
     ".eslintignore": "lint",
-    "config/test.env.js": "unit || e2e",
-    "test/unit/**/*": "unit",
-    "build/webpack.test.conf.js": "unit",
-    "test/e2e/**/*": "e2e",
-    "src/router/**/*": "router"
+    // "config/test.env.js": "unit || e2e",
+    // "test/unit/**/*": "unit",
+    // "build/webpack.test.conf.js": "unit",
+    // "test/e2e/**/*": "e2e"
+    "config/test.env.js": "test",
+    "test/unit/**/*": "test",
+    "build/webpack.test.conf.js": "test",
+    "test/e2e/**/*": "test",
+    "src/pages/counter/*": "vuex",
   },
-  "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+  // "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+  "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at http://mpvue.com"
 };

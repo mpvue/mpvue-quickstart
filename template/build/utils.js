@@ -20,9 +20,24 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  var postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: true
+    }
+  }
+
+  var px2rpxLoader = {
+    loader: 'px2rpx-loader',
+    options: {
+      baseDpr: 1,
+      rpxUnit: 0.5
+    }
+  }
+
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader]
+    var loaders = [cssLoader, postcssLoader, px2rpxLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
