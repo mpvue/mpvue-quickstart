@@ -14,7 +14,7 @@
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}"{{/lint}}
   },
   "dependencies": {
-    "mpvue": "1.0.1"{{#vuex}},
+    "mpvue": "^1.0.1"{{#vuex}},
     "vuex": "^2.3.1"{{/vuex}}
   },
   "devDependencies": {
