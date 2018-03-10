@@ -66,13 +66,13 @@ module.exports = {
         test: /\.js$/,
         include: [resolve('src'), resolve('test')],
         use: [
-          'babel-loader',
           {
             loader: 'mpvue-loader',
             options: {
               checkMPEntry: true
             }
           },
+          'babel-loader'
         ]
       },
       {
