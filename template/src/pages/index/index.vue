@@ -18,7 +18,9 @@
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
-
+    {{#if vuex}}
+    <a href="/pages/counter/counter" class="counter">去往Vuex示例页面</a>
+    {{/if}}
   </div>
 </template>
 
@@ -94,4 +96,14 @@ export default {
   margin-bottom: 5px;
   border: 1px solid #ccc;
 }
+
+{{#if vuex}}
+.counter {
+  display: inline-block;
+  margin: 10px auto;
+  padding: 5px 10px;
+  color: blue;
+  border: 1px solid blue;
+}
+{{/if}}
 </style>
