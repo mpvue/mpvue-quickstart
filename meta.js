@@ -14,11 +14,17 @@ module.exports = {
       "required": true,
       "message": "Project name"
     },
+    "appid": {
+      "type": "string",
+      "required": false,
+      "message": "wxmp appid",
+      "default": "touristappid"
+    },
     "description": {
       "type": "string",
       "required": false,
       "message": "Project description",
-      "default": "A Vue.js project"
+      "default": "A Mpvue project"
     },
     "author": {
       "type": "string",
