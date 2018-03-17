@@ -18,7 +18,7 @@
     "vuex": "^2.3.1"{{/vuex}}
   },
   "devDependencies": {
-    "mpvue-loader": "^1.0.6",
+    "mpvue-loader": "^1.0.7",
     "mpvue-webpack-target": "^1.0.0",
     "mpvue-template-compiler": "^1.0.5",
     "postcss-mpvue-wxss": "^1.0.0",
