@@ -3,24 +3,25 @@ var fs = require('fs')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var MpvuePlugin = require('webpack-mpvue-asset-plugin')
+var glob = require('glob')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 function getEntry (dir, entryFile) {
-  const files = fs.readdirSync(dir)
-  return files.reduce((res, k) => {
-    const page = path.resolve(dir, k, entryFile)
-    if (fs.existsSync(page)) {
-      res[k] = page
-    }
-    return res
-  }, {})
+  var files = glob.sync(dir + '/pages/**/main.js');
+  var map = {};
+  files.forEach(file => {
+    var key = file.replace(dir + '/', '').replace(/\.js$/, '');
+    map[key] = file;
+  })
+  return map;
 }
 
 const appEntry = { app: resolve('./src/main.js') }
-const pagesEntry = getEntry(resolve('./src/pages'), 'main.js')
+const pagesEntry = getEntry(resolve('./src'), 'main.js')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
 module.exports = {
@@ -102,5 +103,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new MpvuePlugin()
+  ]
 }
