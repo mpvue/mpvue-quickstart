@@ -14,13 +14,13 @@
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}"{{/lint}}
   },
   "dependencies": {
-    "mpvue": "^1.0.8"{{#vuex}},
+    "mpvue": "^1.0.9"{{#vuex}},
     "vuex": "^2.3.1"{{/vuex}}
   },
   "devDependencies": {
-    "mpvue-loader": "^1.0.11",
+    "mpvue-loader": "^1.0.12",
     "mpvue-webpack-target": "^1.0.0",
-    "mpvue-template-compiler": "^1.0.8",
+    "mpvue-template-compiler": "^1.0.9",
     "portfinder": "^1.0.13",
     "postcss-mpvue-wxss": "^1.0.0",
     "px2rpx-loader": "^0.1.8",
