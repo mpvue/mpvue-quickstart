@@ -29,8 +29,8 @@ export default {
     }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-
 </script>
+
 <style>
 .counter-warp {
   text-align: center;
@@ -43,5 +43,4 @@ export default {
   color: blue;
   border: 1px solid blue;
 }
-
 </style>
