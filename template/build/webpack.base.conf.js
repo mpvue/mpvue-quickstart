@@ -46,7 +46,8 @@ module.exports = {
       'vue': 'mpvue',
       '@': resolve('src')
     },
-    symlinks: false
+    symlinks: false,
+    mainFields: ['browser', 'module', 'main']
   },
   module: {
     rules: [
