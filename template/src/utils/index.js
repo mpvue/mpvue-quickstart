@@ -18,9 +18,7 @@ export function formatTime{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}(date
   return `${t1} ${t2}`{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 }
 
-{{#if_eq lintConfig "airbnb"}}
 export default {
   formatNumber,
-  formatTime,
-};
-{{/if_eq}}
+  formatTime{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
