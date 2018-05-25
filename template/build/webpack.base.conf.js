@@ -47,6 +47,7 @@ module.exports = {
       '@': resolve('src')
     },
     symlinks: false,
+    aliasFields: ['mpvue', 'weapp', 'browser'],
     mainFields: ['browser', 'module', 'main']
   },
   module: {
