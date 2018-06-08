@@ -73,7 +73,12 @@ module.exports = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      }, {
+        from: path.resolve(__dirname, '../ext.json'),
+        to: config.build.assetsRoot,
+        ignore: ['.*']
       }
+      
     ]),
 
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
