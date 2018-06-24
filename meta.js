@@ -30,22 +30,6 @@ module.exports = {
       "type": "string",
       "message": "Author"
     },
-    "build": {
-      "type": "list",
-      "message": "Vue build",
-      "choices": [
-        // {
-        //   "name": "Runtime + Compiler: recommended for most users",
-        //   "value": "standalone",
-        //   "short": "standalone"
-        // },
-        {
-          "name": "Runtime-only: no custom render function, only can compile template in *.vue",
-          "value": "runtime",
-          "short": "runtime"
-        }
-      ]
-    },
     "vuex": {
       "type": "confirm",
       "message": "Use Vuex?"
@@ -84,16 +68,8 @@ module.exports = {
   "filters": {
     ".eslintrc.js": "lint",
     ".eslintignore": "lint",
-    // "config/test.env.js": "unit || e2e",
-    // "test/unit/**/*": "unit",
-    // "build/webpack.test.conf.js": "unit",
-    // "test/e2e/**/*": "e2e"
-    "config/test.env.js": "test",
-    "test/unit/**/*": "test",
-    "build/webpack.test.conf.js": "test",
-    "test/e2e/**/*": "test",
-    "src/pages/counter/*": "vuex",
+    "src/pages/counter.vue": "vuex",
+    "src/store/*": "vuex"
   },
-  // "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
   "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at http://mpvue.com"
 };

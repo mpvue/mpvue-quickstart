@@ -1,10 +1,10 @@
-var path = require('path')
-var fs = require('fs')
-var utils = require('./utils')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
-var MpvuePlugin = require('webpack-mpvue-asset-plugin')
-var glob = require('glob')
+const path = require('path')
+const fs = require('fs')
+const glob = require('glob')
+const MpvuePlugin = require('webpack-mpvue-asset-plugin')
+const utils = require('./utils')
+const config = require('../config')
+const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -40,9 +40,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      {{#if_eq build "standalone"}}
-      // 'vue$': 'vue/dist/vue.esm.js',
-      {{/if_eq}}
       'vue': 'mpvue',
       '@': resolve('src')
     },
@@ -57,7 +54,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
+        include: [resolve('src')],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -70,7 +67,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: [resolve('src'), resolve('test')],
+        include: [resolve('src')],
         use: [
           'babel-loader',
           {
@@ -85,7 +82,6 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
           name: utils.assetsPath('img/[name].[ext]')
         }
       },
@@ -101,7 +97,6 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
           name: utils.assetsPath('fonts/[name].[ext]')
         }
       }
