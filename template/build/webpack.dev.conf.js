@@ -65,7 +65,7 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common/manifest',
-      chunks: ['vendor']
+      chunks: ['common/vendor']
     }),
 
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage

@@ -12,7 +12,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-function getEntry (rootSrc, pattern) {
+function getEntry (rootSrc) {
   var map = {};
   glob.sync(rootSrc + '/pages/**/main.js')
   .forEach(file => {
@@ -29,7 +29,7 @@ function getEntry (rootSrc, pattern) {
    return map;
 }
 
-const appEntry = { 'app': resolve('./src/main.js')}
+const appEntry = { app: resolve('./src/main.js') }
 configFilesArray.push({
     from: resolve('./src/main.json'),
     to: 'app.json'
