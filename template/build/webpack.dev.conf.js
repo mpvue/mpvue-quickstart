@@ -29,10 +29,10 @@ module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',
   output: {
     path: config.build.assetsRoot,
-    // filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    // chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
-    filename: utils.assetsPath('js/[name].js'),
-    chunkFilename: utils.assetsPath('js/[id].js')
+    // filename: utils.assetsPath('[name].[chunkhash].js'),
+    // chunkFilename: utils.assetsPath('[id].[chunkhash].js')
+    filename: utils.assetsPath('[name].js'),
+    chunkFilename: utils.assetsPath('[id].js')
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -42,8 +42,8 @@ module.exports = merge(baseWebpackConfig, {
     // copy from ./webpack.prod.conf.js
     // extract css into its own file
     new ExtractTextPlugin({
-      // filename: utils.assetsPath('css/[name].[contenthash].css')
-      filename: utils.assetsPath('css/[name].wxss')
+      // filename: utils.assetsPath('[name].[contenthash].css')
+      filename: utils.assetsPath('[name].wxss')
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
