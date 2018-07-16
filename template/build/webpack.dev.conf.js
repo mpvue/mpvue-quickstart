@@ -53,7 +53,7 @@ module.exports = merge(baseWebpackConfig, {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: 'common/vendor',
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
@@ -64,17 +64,9 @@ module.exports = merge(baseWebpackConfig, {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
+      name: 'common/manifest',
       chunks: ['vendor']
     }),
-    // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ]),
 
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     // new webpack.HotModuleReplacementPlugin(),

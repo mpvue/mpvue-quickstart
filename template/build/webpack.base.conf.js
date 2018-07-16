@@ -5,22 +5,35 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var MpvuePlugin = require('webpack-mpvue-asset-plugin')
 var glob = require('glob')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+var configFilesArray = []
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 function getEntry (rootSrc, pattern) {
-  var files = glob.sync(path.resolve(rootSrc, pattern))
-  return files.reduce((res, file) => {
-    var info = path.parse(file)
-    var key = info.dir.slice(rootSrc.length + 1) + '/' + info.name
-    res[key] = path.resolve(file)
-    return res
-  }, {})
+  var map = {};
+  glob.sync(rootSrc + '/pages/**/main.js')
+  .forEach(file => {
+    var key = file.replace(rootSrc + '/', '').replace('.js', '');
+      map[key] = file;
+  })
+  glob.sync(rootSrc + '/pages/**/main.json')
+  .forEach(file => {
+    configFilesArray.push({
+      from: file,
+      to: file.replace(rootSrc + '/', '')
+    })
+   })
+   return map;
 }
 
-const appEntry = { app: resolve('./src/main.js') }
+const appEntry = { 'app': resolve('./src/main.js')}
+configFilesArray.push({
+    from: resolve('./src/main.json'),
+    to: 'app.json'
+})
 const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
@@ -108,6 +121,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MpvuePlugin()
+    new MpvuePlugin(),
+    new CopyWebpackPlugin(configFilesArray)
   ]
 }
