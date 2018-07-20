@@ -28,6 +28,7 @@
     "babel-core": "^6.22.1",
     "glob": "^7.1.2",
     "webpack-mpvue-asset-plugin": "^0.0.2",
+    "relative": "^3.0.2",
     {{#lint}}
     "babel-eslint": "^8.2.3",
     {{/lint}}

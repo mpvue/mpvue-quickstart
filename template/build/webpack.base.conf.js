@@ -7,6 +7,7 @@ var MpvuePlugin = require('webpack-mpvue-asset-plugin')
 var glob = require('glob')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var configFilesArray = []
+var relative = require('relative')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -16,14 +17,14 @@ function getEntry (rootSrc) {
   var map = {};
   glob.sync(rootSrc + '/pages/**/main.js')
   .forEach(file => {
-    var key = file.replace(rootSrc + '/', '').replace('.js', '');
-      map[key] = file;
+    var key = relative(rootSrc, file).replace('.js', '');
+    map[key] = file;
   })
   glob.sync(rootSrc + '/pages/**/main.json')
   .forEach(file => {
     configFilesArray.push({
       from: file,
-      to: file.replace(rootSrc + '/', '')
+      to: relative(rootSrc, file)
     })
    })
    return map;
