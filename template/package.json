@@ -18,7 +18,7 @@
     "vuex": "^3.0.1"{{/vuex}}
   },
   "devDependencies": {
-    "mpvue-loader": "^1.1.1-rc.2",
+    "mpvue-loader": "^1.1.1-rc.4",
     "mpvue-webpack-target": "^1.0.0",
     "mpvue-template-compiler": "^1.0.11",
     "portfinder": "^1.0.13",
@@ -27,7 +27,7 @@
     "px2rpx-loader": "^0.1.10",
     "babel-core": "^6.22.1",
     "glob": "^7.1.2",
-    "webpack-mpvue-asset-plugin": "^0.1.0",
+    "webpack-mpvue-asset-plugin": "^0.1.1",
     "relative": "^3.0.2",
     {{#lint}}
     "babel-eslint": "^8.2.3",
