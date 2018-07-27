@@ -6,7 +6,6 @@ var vueLoaderConfig = require('./vue-loader.conf')
 var MpvuePlugin = require('webpack-mpvue-asset-plugin')
 var glob = require('glob')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
-var configFilesArray = []
 var relative = require('relative')
 
 function resolve (dir) {
@@ -20,21 +19,10 @@ function getEntry (rootSrc) {
     var key = relative(rootSrc, file).replace('.js', '');
     map[key] = file;
   })
-  glob.sync(rootSrc + '/pages/**/main.json')
-  .forEach(file => {
-    configFilesArray.push({
-      from: file,
-      to: relative(rootSrc, file)
-    })
-   })
    return map;
 }
 
 const appEntry = { app: resolve('./src/main.js') }
-configFilesArray.push({
-    from: resolve('./src/main.json'),
-    to: 'app.json'
-})
 const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
@@ -123,7 +111,12 @@ module.exports = {
   },
   plugins: [
     new MpvuePlugin(),
-    new CopyWebpackPlugin(configFilesArray),
+    new CopyWebpackPlugin([{
+      from: '**/*.json',
+      to: ''
+    }], {
+      context: 'src/'
+    }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
