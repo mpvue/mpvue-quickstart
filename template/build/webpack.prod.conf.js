@@ -87,7 +87,25 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common/manifest',
       chunks: ['common/vendor']
-    })
+    }),
+
+    // copy custom static assets
+    // then copy page config
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: config.build.assetsSubDirectory,
+        ignore: ['.*']
+      }, {
+        // add file cooy config
+        from: path.resolve(__dirname, '../src/pages'),
+        to: path.resolve(__dirname, '../dist/pages'),
+        ignore: ['*.vue', '*.js'],
+        transform (content, path) {
+          return Promise.resolve(JSON.stringify(JSON.parse(content.toString())))
+        }
+      }
+    ]),
   ]
 })
 
