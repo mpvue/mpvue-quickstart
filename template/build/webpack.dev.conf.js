@@ -68,6 +68,20 @@ module.exports = merge(baseWebpackConfig, {
       chunks: ['common/vendor']
     }),
 
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: config.build.assetsSubDirectory,
+        ignore: ['.*']
+      }, {
+        // add file cooy config
+        from: path.resolve(__dirname, '../src/pages'),
+        to: path.resolve(__dirname, '../dist/pages'),
+        ignore: ['*.vue', '*.js']
+      }
+    ]),
+
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
