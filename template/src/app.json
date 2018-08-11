@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/counter/main",
-    "pages/logs/main"
+    "pages/logs/main"{{#if vuex}},
+    "pages/counter/main"
+    {{/if}}
   ],
   "window": {
     "backgroundTextStyle": "light",
