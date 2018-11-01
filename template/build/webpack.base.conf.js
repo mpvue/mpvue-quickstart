@@ -43,7 +43,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       {{#if_eq build "standalone"}}
-      // 'vue$': 'vue/dist/vue.esm.js',
+      // 'vue$': `vue/dist/${config.build.fileExt.platform}/vue.esm.js`,
       {{/if_eq}}
       'vue': 'mpvue',
       '@': resolve('src')
@@ -77,9 +77,7 @@ module.exports = {
           'babel-loader',
           {
             loader: 'mpvue-loader',
-            options: {
-              checkMPEntry: true
-            }
+            options: Object.assign({checkMPEntry: true}, vueLoaderConfig)
           },
         ]
       },
@@ -120,7 +118,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static'),
+        to: path.resolve(config.build.assetsRoot, './static'),
         ignore: ['.*']
       }
     ])
