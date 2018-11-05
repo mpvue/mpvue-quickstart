@@ -8,7 +8,7 @@ var fileExtConfig = {
         platform: 'swan'
     },
     wx: {
-        template: 'wxmp',
+        template: 'wxml',
         script: 'js',
         style: 'wxss',
         platform: 'wx'
