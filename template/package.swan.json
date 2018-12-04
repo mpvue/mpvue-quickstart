@@ -1,0 +1,12 @@
+{
+  "appid": "{{ appid }}",
+  "setting": {
+    "urlCheck": false
+  },
+  "condition": {
+    "swan": {
+      "current": -1,
+      "list": []
+    }
+  }
+}
