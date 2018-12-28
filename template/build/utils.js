@@ -1,6 +1,9 @@
 var path = require('path')
+var fs = require('fs')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var mpvueInfo = require('../node_modules/mpvue/package.json')
+var packageInfo = require('../package.json')
 
 exports.assetsPath = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -84,4 +87,25 @@ exports.styleLoaders = function (options) {
     })
   }
   return output
+}
+
+exports.writeFrameworkinfo = function () {
+  var buildInfo = {
+    toolName: mpvueInfo.name,
+    toolFrameWorkVersion: mpvueInfo.version,
+    toolCliVersion: packageInfo.mpvueTemplateProjectVersion || '',
+    createTime: Date.now()
+  }
+
+  var content = JSON.stringify(buildInfo)
+  var fileName = '.frameworkinfo'
+  var rootDir = path.resolve(__dirname, `.././${fileName}`)
+  var distDir = path.resolve(config.build.assetsRoot, `./${fileName}`)
+
+  fs.writeFile(rootDir, content, 'utf8', function (err) {
+    if (err) throw err
+  })
+  fs.writeFile(distDir, content, 'utf8', function (err) {
+    if (err) throw err
+  })
 }
