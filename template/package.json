@@ -1,6 +1,7 @@
 {
   "name": "{{ name }}",
   "version": "1.0.0",
+  "mpvueTemplateProjectVersion": "0.0.1",
   "description": "{{ description }}",
   "author": "{{ author }}",
   "private": true,

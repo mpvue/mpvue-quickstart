@@ -44,7 +44,11 @@ module.exports = {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',
-      'vue': 'never'
+      'vue': 'never',
+      'json': 'never'
+    }],
+    'import/no-unresolved': [2, {
+      'caseSensitive': false
     }],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
