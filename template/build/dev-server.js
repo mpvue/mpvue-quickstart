@@ -26,12 +26,10 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-var compiler = webpack(webpackConfig, function (err, stats) {
-  if (err) throw err
-  if (process.env.PLATFORM === 'swan') {
-    utils.writeFrameworkinfo()
-  }
-})
+var compiler = webpack(webpackConfig)
+if (process.env.PLATFORM === 'swan') {
+  utils.writeFrameworkinfo()
+}
 
 // var devMiddleware = require('webpack-dev-middleware')(compiler, {
 //   publicPath: webpackConfig.output.publicPath,
