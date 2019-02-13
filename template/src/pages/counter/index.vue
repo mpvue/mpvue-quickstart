@@ -12,23 +12,23 @@
 
 <script>
 // Use Vuex
-import store from './store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import store from './store'
 
 export default {
   computed: {
-    count{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-      return store.state.count{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    count() {
+      return store.state.count
+    }
   },
   methods: {
-    increment{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-      store.commit('increment'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    increment() {
+      store.commit('increment')
     },
-    decrement{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-      store.commit('decrement'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    decrement() {
+      store.commit('decrement')
+    }
+  }
+}
 </script>
 
 <style>

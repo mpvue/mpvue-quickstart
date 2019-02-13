@@ -1,5 +1,12 @@
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import App from './index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Vue from 'vue'
+import App from './index'
 
-const app = new Vue(App){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-app.$mount(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+// add this to handle exception
+Vue.config.errorHandler = function (err) {
+  if (console && console.error) {
+    console.error(err)
+  }
+}
+
+const app = new Vue(App)
+app.$mount()

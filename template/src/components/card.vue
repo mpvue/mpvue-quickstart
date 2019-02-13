@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  props: ['text']{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  props: ['text']
+}
 </script>
 
 <style>

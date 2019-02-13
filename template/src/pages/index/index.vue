@@ -1,8 +1,10 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
+  <div @click="clickHandle">
 
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
+      <img class="userinfo-avatar" src="/static/images/user.png" background-size="cover" />
+
       <div class="userinfo-nickname">
         <card :text="userInfo.nickName"></card>
       </div>
@@ -15,57 +17,61 @@
     </div>
 
     <form class="form-container">
+      <input type="text" class="form-control" :value="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
+
     {{#if vuex}}
     <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
     {{/if}}
+
+    <div class="all">
+        <div class="left">
+        </div>
+        <div class="right">
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import card from '@/components/card'
 
 export default {
-  data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+  data () {
     return {
-      motto: 'Hello World',
-      userInfo: {}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      motto: 'Hello miniprograme',
+      userInfo: {
+        nickName: 'mpvue',
+        avatarUrl: 'http://mpvue.com/assets/logo.png'
+      }
+    }
   },
 
   components: {
-    card{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    card
   },
 
   methods: {
-    bindViewTap{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-      const url = '../logs/main'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-      wx.navigateTo({ url }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    bindViewTap () {
+      const url = '../logs/main'
+      if (mpvuePlatform === 'wx') {
+        mpvue.switchTab({ url })
+      } else {
+        mpvue.navigateTo({ url })
+      }
     },
-    getUserInfo{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-            }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-          }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-        }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-      }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    },
-    clickHandle{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}(msg, ev) {
-      console.log('clickHandle:', msg, ev){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    clickHandle (ev) {
+      console.log('clickHandle:', ev)
+      // throw {message: 'custom test'}
+    }
   },
 
-  created{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  created () {
+    let app = getApp()
+  }
+}
 </script>
 
 <style scoped>
@@ -96,14 +102,27 @@ export default {
   margin-bottom: 5px;
   border: 1px solid #ccc;
 }
-
-{{#if vuex}}
-.counter {
-  display: inline-block;
-  margin: 10px auto;
-  padding: 5px 10px;
-  color: blue;
-  border: 1px solid blue;
+.all{
+  width:7.5rem;
+  height:1rem;
+  background-color:blue;
 }
-{{/if}}
+.all:after{
+  display:block;
+  content:'';
+  clear:both;
+}
+.left{
+  float:left;
+  width:3rem;
+  height:1rem;
+  background-color:red;
+}
+
+.right{
+  float:left;
+  width:4.5rem;
+  height:1rem;
+  background-color:green;
+}
 </style>
