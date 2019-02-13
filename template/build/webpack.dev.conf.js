@@ -27,7 +27,7 @@ module.exports = merge(baseWebpackConfig, {
   },
   // cheap-module-eval-source-map is faster for development
   // devtool: '#cheap-module-eval-source-map',
-  devtool: '#source-map',
+  // devtool: '#source-map',
   output: {
     path: config.build.assetsRoot,
     // filename: utils.assetsPath('[name].[chunkhash].js'),
@@ -68,7 +68,9 @@ module.exports = merge(baseWebpackConfig, {
       name: 'common/manifest',
       chunks: ['common/vendor']
     }),
-    new MpvueVendorPlugin(),
+    new MpvueVendorPlugin({
+      platform: process.env.PLATFORM
+    }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

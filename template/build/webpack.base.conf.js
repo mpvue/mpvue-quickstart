@@ -134,13 +134,19 @@ let baseWebpackConfig = {
 }
 
 // 针对百度小程序，由于不支持通过 miniprogramRoot 进行自定义构建完的文件的根路径
-// 所以需要将项目根路径下面的 project.swan.json 拷贝到 dist/swan 下
-// 然后百度开发者工具将 dist/swan 作为项目根目录打开进行调试
-if (process.env.PLATFORM === 'swan') {
+// 所以需要将项目根路径下面的 project.swan.json 拷贝到构建目录
+// 然后百度开发者工具将 dist/swan 作为项目根目录打
+const projectConfigMap = {
+  tt: '../project.config.json',
+  swan: '../project.swan.json'
+}
+
+const PLATFORM = process.env.PLATFORM
+if (/^(swan)|(tt)$/.test(PLATFORM)) {
   baseWebpackConfig = merge(baseWebpackConfig, {
     plugins: [
       new CopyWebpackPlugin([{
-        from: path.resolve(__dirname, '../project.swan.json'),
+        from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
         to: path.resolve(config.build.assetsRoot)
       }])
     ]
@@ -148,4 +154,3 @@ if (process.env.PLATFORM === 'swan') {
 }
 
 module.exports = baseWebpackConfig
-

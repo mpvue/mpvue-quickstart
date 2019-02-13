@@ -7,11 +7,23 @@ var fileExtConfig = {
         style: 'css',
         platform: 'swan'
     },
+    tt: {
+        template: 'ttml',
+        script: 'js',
+        style: 'ttss',
+        platform: 'tt'
+    },
     wx: {
         template: 'wxml',
         script: 'js',
         style: 'wxss',
         platform: 'wx'
+    },
+    my: {
+        template: 'axml',
+        script: 'js',
+        style: 'acss',
+        platform: 'my'
     }
 }
 var fileExt = fileExtConfig[process.env.PLATFORM]
