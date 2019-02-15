@@ -14,15 +14,15 @@ import store from './store'
 
 export default {
   computed: {
-    count() {
+    count () {
       return store.state.count
     }
   },
   methods: {
-    increment() {
+    increment () {
       store.commit('increment')
     },
-    decrement() {
+    decrement () {
       store.commit('decrement')
     }
   }

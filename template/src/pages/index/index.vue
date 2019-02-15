@@ -69,7 +69,7 @@ export default {
   },
 
   created () {
-    let app = getApp()
+    // let app = getApp()
   }
 }
 </script>
