@@ -147,7 +147,14 @@ if (/^(swan)|(tt)$/.test(PLATFORM)) {
     plugins: [
       new CopyWebpackPlugin([{
         from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
-        to: path.resolve(config.build.assetsRoot)
+        to: path.resolve(config.build.assetsRoot),
+        transform: (content) => {
+          const config = JSON.parse(content)
+          if (config.miniprogramRoot) {
+            config.miniprogramRoot = './'
+          }
+          return JSON.stringify(config, null, 2)
+        },
       }])
     ]
   })
