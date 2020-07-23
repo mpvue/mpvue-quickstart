@@ -9,7 +9,7 @@ $ vue init mpvue/mpvue-quickstart my-project
 $ cd my-project
 $ npm install
 $ npm run dev
-```
+``` 
 
 更多详细文档请查阅 [quickstart](http://mpvue.com/mpvue/quickstart/)。
 
